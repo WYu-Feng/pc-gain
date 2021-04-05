@@ -1,8 +1,8 @@
 ## Use this for tf 2.
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+# import tensorflow.compat.v1 as tf
+# tf.disable_v2_behavior()
 
-# import tensorflow as tf
+import tensorflow as tf
 import numpy as np
 from utils import normalization, renormalization , rounding
 from utils import xavier_init
