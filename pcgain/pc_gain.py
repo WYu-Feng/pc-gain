@@ -1,8 +1,8 @@
 ## Use this for tf 2.
-# import tensorflow.compat.v1 as tf
-# tf.disable_v2_behavior()
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
-import tensorflow as tf
+# import tensorflow as tf
 import numpy as np
 from utils import normalization, renormalization , rounding
 from utils import xavier_init
@@ -127,7 +127,7 @@ def PC_GAIN (incomplete_data_x , gain_parameters , data_m):
     ## PC_GAIN loss
     D_loss_temp = -tf.reduce_mean(M * tf.log(D_prob + 1e-8) + (1-M) * tf.log(1. - D_prob + 1e-8))
     G_loss_temp = -tf.reduce_mean((1-M) * tf.log(D_prob + 1e-8))
-    G_loss_with_C = tf.reduce_max([0.0, 1 - tf.reduce_max(Y * Y)])
+    G_loss_with_C = -tf.reduce_mean(Y * tf.log(Y + 1e-8))
     MSE_loss = tf.reduce_mean((M * X - M * G_sample) * (M * X - M * G_sample)) / tf.reduce_mean(M)
 
     D_loss = D_loss_temp
